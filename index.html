@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>Memory Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+  <body>
+    <div id= "container">
+   
+      <div id= "menu">
+          <ul>
+            <li>New Game</li>
+            <li>Pause</li>
+            <li>Remaining Time:</li>
+          </ul>
+      </div>
+    
+      <div id= "game">
+        <span class= "card">A</span>
+        <span class= "card">A</span>
+        <span class= "card">B</span>
+        <span class= "card">B</span>
+        <span class= "card">C</span>
+        <span class= "card">C</span>
+        <span class= "card">D</span>
+        <span class= "card">D</span>
+        <span class= "card">E</span>
+        <span class= "card">E</span>
+        <span class= "card">F</span>
+        <span class= "card">F</span>
+        <span class= "card">G</span>
+        <span class= "card">G</span>
+        <span class= "card">H</span>
+        <span class= "card">H</span>
+        
+      </div>
+      
+      <div id= "board">
+        <h1>Score Board</h1>
+        <ol>
+          <li>Lorem, ipsum.</li>
+          <li>Lorem, ipsum.</li>
+          <li>Lorem, ipsum.</li>
+          <li>Lorem, ipsum.</li>
+        </ol>
+      </div>
+    </div>
+    
+    
+    <script>
+    let cardClosed = document.querySelectorAll(".card");
+    let matchCards = [];
+        
+        function onCardClick() {
+                                
+                                  if (this.classList.contains("card")) {
+                                    
+                                      this.classList.add("open");
+                                      this.classList.remove("card");
+
+                                      matchCards.push(this);
+                                      console.log(matchCards);
+
+                                  } else {
+                                        this.classList.add("card");
+                                        this.classList.remove("open");
+                                  }
+
+                                      while (matchCards.length < 2) {
+
+                                          for (let i=0; i<matchCards.length; i++) {
+                                            
+                                            if (matchCards[0].innerHTML === matchCards[1].innerHTML) {
+                                              for (let i=0; i<matchCards.length; i++) {
+                                                matchCards[0,1].classList.add("match");
+                                                matchCards[0,1].classList.remove("open");}
+                                               // matchCards = []
+                                                } else {
+                                                  matchCards[i].classList.add("card");
+                                                  matchCards[i].classList.remove("open");
+                                                  } 
+                                          }
+                                         
+                                      }
+                                     matchCards = [];
+                                }    
+
+      for (var i = 0; i < cardClosed.length; i++) {
+          cardClosed[i].addEventListener('click', onCardClick, false);
+      }
+    </script>
+</body>
+
+</html>
+
+
+<!-- 
+  1. Figure out how to open up only two tiles at once and reset to default.
+  2. How to connect two tiles with the same value and lock them in not to be reseted.
+  3. Menu controls and timer.
+-->
+   
