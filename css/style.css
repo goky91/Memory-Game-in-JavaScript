@@ -1,0 +1,375 @@
+* {
+      /* border: 1px solid red; */
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; 
+    }
+    body {
+      background-color: rgb(244, 66, 86);  
+    }
+    .column {
+      display: flex;
+      /* width: 100%; */
+      height: 80vh;
+      margin: auto 0;
+    }
+    .container {
+        background-color: rgba(249, 249, 249, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        color: rgb(244, 66, 86);
+        margin: 10px;
+        animation-name: intro-fade;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+    }
+    /*==========SETTINGS===========*/
+    #cloak {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color:  rgba(12, 12, 12, 0.527);
+      z-index: 1;
+      animation-name: intro-fade;
+      animation-duration: 1s;
+      animation-delay: 3.1s;
+      animation-fill-mode: both;
+    }
+    .center-all {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    /*==========ANIMATIONS=========*/
+    @keyframes intro-fade {
+      0% { opacity: 0;}
+      100% { opacity: 1;}
+    }
+     
+    /*============INTRO============*/
+    #intro {
+      width: 100%;
+      height: 90vh;
+      flex-flow: row nowrap;
+      align-items: center;
+    }
+    #intro-circle {
+        flex: 1 1 50%;
+        max-width: 500px;
+        height: 50%;
+        border-radius: 50%;
+        flex-direction: column;
+        text-align: center;
+        color: rgb(244, 66, 86); 
+    }
+  
+    #intro-circle > h1 {
+      margin-bottom: 25px;
+ }
+    #input-form {
+        width: 80%;
+        height: 35%;
+        align-self: center;
+        border-radius: 10px;
+        padding: 20px;
+        background-color:  rgb(244, 66, 86);
+        flex-direction: column;
+    }
+
+    #input-form > * {
+         margin-bottom: 15px;
+    }
+
+    #input-form > input {
+        width: 80%;
+        height: 20%;
+        border-radius: 10px;
+        padding: 5px;
+        align-self: center;
+        background-color: rgb(231, 231, 231);
+    }
+    #input-form > input:focus {
+        outline: none;
+    }
+
+    #input-form > button {
+        width: 30%;
+        height: 30px;
+        border-radius: 2px;
+        padding: 5px;
+        align-self: center;
+        text-align: center;
+        background-color: rgb(52, 81, 247);
+        color: aliceblue;
+        border: none;
+    }
+  
+    #input-form > button:active {
+        background-color: rgb(19, 53, 247);
+        height: 29px;
+        margin-top: 1px;
+    }
+
+    .animation {
+        flex: 1 1 25%;
+    }
+
+    
+    /*============MAIN GAME============*/
+    #game-frame {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    /* #menu {
+      padding: 20px;
+      color: white;
+    }
+    #menu ul {
+      width: 70%;
+      display: flex;
+      justify-content: space-around;
+    }
+    #menu li {
+      display: inline-block;
+      list-style-type: none;
+      
+    }
+    #menu button {
+      padding: 5px 10px;
+    } */
+    
+    #game {
+      flex: 2 1 60%;
+      max-width: 60%;
+      height: 80vh;
+      margin: auto 0 auto 25px;
+      
+      display: flex;
+      flex-flow: row wrap;
+    }
+    .card {
+      border: 1px dashed white;
+      text-align: center;
+     
+      /* This removes the text
+      font-size: 0.01px;
+      white-space: nowrap;
+      overflow: hidden;
+      =======================*/   
+      
+      flex: 1 1 21%;
+      height: auto;
+      
+    }
+    .card:hover {
+      border: 1px solid yellow;
+      background-color: rgb(44, 92, 63);
+    }
+  
+    .open {
+      border: 1px dashed white;
+      text-align: center;
+      width: 100px;
+      height: 100px;
+      background-color: rgb(58, 117, 82);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: none;
+      font-size: 4em;
+      font-family: Arial, Helvetica, sans-serif; 
+  
+      /* This removes the text */
+      text-indent:0;
+      white-space: nowrap;
+      overflow: hidden;
+      /*=======================*/      
+      
+      flex: 1 1 25%;
+      display: flex;
+      flex: column no-wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    .open:hover {
+      border: 1px solid yellow;
+      background-color: rgb(44, 92, 63);
+    }
+    .match {
+      border: 1px dashed white;
+      text-align: center;
+      width: 100px;
+      height: 100px;
+      background-color: rgb(115, 116, 115);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: none;
+      font-size: 4em;
+      font-family: Arial, Helvetica, sans-serif; 
+      color: rgb(231, 73, 24);
+  
+      /* This removes the text */
+      text-indent:0;
+      white-space: nowrap;
+      overflow: hidden;
+      /*=======================*/      
+      
+      flex: 1 1 25%;
+      display: flex;
+      flex: column no-wrap;
+      justify-content: center;
+      align-items: center;
+    }
+    .match:hover {
+      border: 1px solid yellow;
+      background-color: rgb(115, 116, 115);
+    }
+    /*============SECOND COLUMN============*/
+    #menu {
+      flex-direction: column;
+      flex: 1 2 25%;  
+      /* border: 1px solid blue;   */
+      height: 80vh;
+      margin: auto 25px;
+      padding-top: 0;
+    }
+
+    #timer {
+      flex: 1 1 20%; 
+      margin-top: 0;
+      font-size: 7vw;
+      font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
+      animation-delay: 0.5s;
+    }
+
+    #board {
+      flex-direction: column;
+      text-align: center;
+      flex: 2 1 50%;
+      font-size: 1.2vw;
+      font-family: 'Anton', 'Open Sans', 'Arial';
+      animation-delay: 1s;
+    }
+    meter {
+      flex: 1 1 70%;
+      width: 70%;
+    }
+    meter[value] {
+      background-color: red;
+    }
+
+    #new-game {
+      flex: 1 2 10%;
+      width: 60%;
+      color: white;
+      font-family: 'Anton', 'Open Sans', 'Arial';
+      font-size: 1.5vw;
+      border: none;
+      animation-delay: 1.5s;
+      z-index: 2;
+    }
+
+    /*============THIRD COLUMN============*/
+
+    #user-info {
+      flex: 1 1 10%;
+      /* border: 1px solid green; */
+      flex-flow: column;
+      justify-content: flex-start;
+      padding: 0;
+      animation-name: intro-fade;
+      animation-duration: 2s;
+      animation-delay: 2s;
+      animation-fill-mode: both;
+      }
+
+    #welcome {
+      font-family: 'Anton', 'Open Sans', 'Arial';
+      font-size: 4.5vw;
+      text-transform: uppercase;
+      color: white;
+      align-self: flex-end;
+      margin-right: 10px;
+      margin-top: 0;
+    }
+
+    #username {
+      font-family: 'Advent Pro', 'Open Sans', 'Arial';
+      font-size: 6vw;
+      writing-mode: vertical-rl;
+      text-orientation: sideways-right;
+      text-transform: uppercase;
+      color: white;
+    }
+    
+    @media all and (max-width: 1350px) {
+      #container {
+        width: 95%;
+      }
+    }
+  
+    @media all and (max-width: 500px) {
+      #container {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 5px;
+        box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.75);
+        display: flex;
+        flex-flow: column nowrap;
+      }
+      #menu ul {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #menu li {
+        flex: 1 1 auto;
+      }
+      #menu button {
+        padding: 5px 10px;
+      }
+      #game {
+        height: 80vh;
+        padding-top: 1px;     
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: none;
+        justify-content: stretch;
+        align-content: stretch;
+      }
+      .card {
+        margin: 0;
+        width: auto;
+        height: auto;
+        grid-column: 1fr;
+        grid-row: 1fr;
+        flex-basis: 75px;
+       }
+       .open {
+        margin: 0;
+        width: auto;
+        height: auto;
+        grid-column: 1fr;
+        grid-row: 1fr;
+        flex-basis: 75px;
+      }
+      .match {
+        margin: 0;
+        width: auto;
+        height: auto;
+        grid-column: 1fr;
+        grid-row: 1fr;
+        flex-basis: 75px;
+      }
+    }
