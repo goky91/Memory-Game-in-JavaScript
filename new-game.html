@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/new.css">
     <link href="https://fonts.googleapis.com/css?family=Advent+Pro:100|Allerta+Stencil|Anton" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,58 +9,57 @@
     <title>New Game</title>
 </head>
 <body>
+    
+    <div id="game-frame"> 
     <div id="cloak"></div>
-    <div id="game-frame" class="column"> 
-                                 
-        <div id= "game" class="container">
-            <span class= "card">A</span>
-            <span class= "card">A</span>
-            <span class= "card">B</span>
-            <span class= "card">B</span>
-            <span class= "card">C</span>
-            <span class= "card">C</span>
-            <span class= "card">D</span>
-            <span class= "card">D</span>
-            <span class= "card">E</span>
-            <span class= "card">E</span>
-            <span class= "card">F</span>
-            <span class= "card">F</span>
-            <span class= "card">G</span>
-            <span class= "card">G</span>
-            <span class= "card">H</span>
-            <span class= "card">H</span>
-            <span class= "card">I</span>
-            <span class= "card">I</span>
-            <span class= "card">J</span>
-            <span class= "card">J</span>
-            
-            <span class= "card">K</span>
-            <span class= "card">K</span>
-            <span class= "card">L</span>
-            <span class= "card">L</span>
+       <div class="first column">                          
+            <div id= "game" class="container">
+                <div class= "card"><span>A</span></div>
+                <div class= "card"><span>A</span></div>
+                <div class= "card"><span>B</span></div>
+                <div class= "card"><span>B</span></div>
+                <div class= "card"><span>C</span></div>
+                <div class= "card"><span>C</span></div>
+                <div class= "card"><span>D</span></div>
+                <div class= "card"><span>D</span></div>
+                <div class= "card"><span>E</span></div>
+                <div class= "card"><span>E</span></div>
+                <div class= "card"><span>F</span></div>
+                <div class= "card"><span>F</span></div>
+                <div class= "card"><span>G</span></div>
+                <div class= "card"><span>G</span></div>
+                <div class= "card"><span>H</span></div>
+                <div class= "card"><span>H</span></div>
+                <div class= "card"><span>I</span></div>
+                <div class= "card"><span>I</span></div>
+                <div class= "card"><span>J</span></div>
+                <div class= "card"><span>J</span></div>
+                <div class= "card"><span>K</span></div>
+                <div class= "card"><span>K</span></div>
+                <div class= "card"><span>L</span></div>
+                <div class= "card"><span>L</span></div>
         </div>
-
-    <div id="menu" class="column">       
-        <div id="timer" class="container">
+        </div>
+    <div class="second column">
+        <div id="score-board">       
+            <div id="timer" class="container">
                 <span id="countdown">00:45</span>
-        </div>    
-        <div id="board" class="container">
-            <h1>Result:</h1>
-            <meter value="22" max="100">Hit Rate: </meter>
-            <meter value="30" max="100">Total Time: </meter>
-            <meter value="60" max="100">Final Score: </meter>
-            <ol id="score"></ol>
+            </div>    
+            <div id="board" class="container">
+                <h1>Result:</h1>
+                <meter value="22" max="100">Hit Rate: </meter>
+                <meter value="30" max="100">Total Time: </meter>
+                <meter value="60" max="100">Final Score: </meter>
+                <ol id="score"></ol>
+            </div>
+            <button id="new-game" class="container">New Game</button>        
         </div>
-        <button id="new-game" class="container">New Game</button>
-        
-        
     </div>    
 
-    <div id="user-info" class="column">     <!--continue here!-->      
+    <div class="third column">      
                 <span id="welcome">Welcome</span>
                 <span id="username">Username</span>
         </div>   
-
     </div>
     <script src="js/main.js"></script>
 </body>
