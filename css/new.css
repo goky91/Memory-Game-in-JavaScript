@@ -1,0 +1,302 @@
+* {
+    /* border: 1px solid red; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    user-select: none;
+  }
+body {
+    background-color: rgb(244, 66, 86);  
+  }
+
+  @keyframes intro-fade {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+  }
+
+/*======Layout=======*/
+
+#game-frame {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+  }
+
+.column {
+    position: relative;
+    flex: 1 1 auto;
+    height: 100%;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    padding: 20px;
+  }
+ 
+    .first{
+        flex: 3 1 50%;
+    }
+    .second {
+        flex-direction: column;
+        flex: 2 2 30%;  
+        align-content: space-between;
+        /* border: 1px solid blue;   */
+    }
+    .third {
+        flex: 1 6 auto;
+        /* border: 2px solid yellow; */
+        flex-flow: column;
+        justify-content: flex-start;
+        animation-name: intro-fade;
+        animation-duration: 2s;
+        animation-delay: 2s;
+        animation-fill-mode: both;
+        }
+
+/*======Elements=======*/
+
+#cloak {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color:  rgba(12, 12, 12, 0.527);
+    z-index: 1;
+    animation-name: intro-fade;
+    animation-duration: 1s;
+    animation-delay: 3.1s;
+    animation-fill-mode: both;
+  }
+
+.container {
+    background-color: rgba(249, 249, 249, 0.7);
+    height: auto;
+    border-radius: 10px;
+    color: rgb(244, 66, 86);
+    animation-name: intro-fade;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+#game {
+flex: 0 0 100%;
+height: auto;      
+display: flex;
+flex-flow: row wrap;
+}
+
+.card {
+display: flex;
+justify-content: center;
+align-content: center;
+font-size: calc(1em + 1vw); 
+flex: 1 1 21%;
+height: auto;
+border: 1px inset grey;
+}
+.card > span {
+    display: block;
+    align-self: center;
+}
+/* .card > span{
+    visibility: hidden;
+} */
+/* .card:hover {
+border: 1px solid yellow;
+background-color: rgb(44, 92, 63);
+}*/
+
+.open {
+    font-size: calc(1em + 1vw);
+    text-align: center;  
+    flex: 1 1 21%;
+    height: auto;
+    padding: 1em;
+    border: 1px inset grey;
+}/*
+.open:hover {
+border: 1px solid yellow;
+background-color: rgb(44, 92, 63);
+}
+.match {
+border: 1px dashed white;
+text-align: center;
+width: 100px;
+height: 100px;
+background-color: rgb(115, 116, 115);
+background-position: center center;
+background-repeat: no-repeat;
+background-size: contain;
+background-image: none;
+font-size: 4em;
+font-family: Arial, Helvetica, sans-serif; 
+color: rgb(231, 73, 24);
+
+/* This removes the text */
+/* text-indent:0;
+white-space: nowrap;
+overflow: hidden; */
+/*=======================*/      
+
+/* flex: 1 1 25%;
+display: flex;
+flex: column no-wrap;
+justify-content: center;
+align-items: center;
+}
+.match:hover {
+border: 1px solid yellow;
+background-color: rgb(115, 116, 115);
+} */ 
+
+#timer {
+    flex: 1 1 20%;
+    margin-top: 0;
+    font-size: calc(1em + 6vw);;
+    font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
+    animation-delay: 0.5s;
+  }
+
+#score-board {
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    /* border: 1px solid blue; */
+    flex: 1 1 auto;
+    height: auto;
+}
+#score-board > .container {
+    margin-bottom: 20px;
+}
+
+#board {
+    flex: 2 1 50%;
+    font-size: calc(0.5em + 1vw);
+    font-family: 'Anton', 'Open Sans', 'Arial';
+    animation-delay: 1s;
+    }
+    meter {
+        flex: 1 1 70%;
+        width: 70%;
+        }
+    meter[value] {
+        background-color: red;
+        }
+
+#new-game {
+    flex: 1 2 10%;
+    width: 60%;
+    color: white;
+    font-family: 'Anton', 'Open Sans', 'Arial';
+    font-size: calc(0.5em + 1vw);
+    border: none;
+    animation-delay: 1.5s;
+    z-index: 2;
+   }
+
+#welcome {
+    font-family: 'Anton', 'Open Sans', 'Arial';
+    font-size: calc(1em + 3vw);
+    text-transform: uppercase;
+    color: white;
+    align-self: flex-end;
+    }
+  
+#username {
+    font-family: 'Advent Pro', 'Open Sans', 'Arial';
+    font-size: calc(1em + 6vw);
+    writing-mode: vertical-rl;
+    text-orientation: sideways-right;
+    text-transform: uppercase;
+    color: white;
+    line-height: 1;
+    }
+
+    @media all and (max-width: 1230px) {
+        * {
+            animation-duration: 0.7s !important;
+            animation-delay: 0s !important;
+        }
+
+        #cloak {
+            display: none;
+            animation: none;
+        }
+      
+        #game-frame {
+          flex-flow: column;
+          height: 100vh;
+          justify-content: center;
+          align-content: space-around;
+        }
+  
+        .column {
+          flex: 1 1 auto;
+          height: auto;
+          padding: 5px;
+        }
+        .first{
+            flex: 3 1 auto;
+            order: 3;
+        }
+        .second {
+            flex-direction: column;
+            flex: 2 2 auto;  
+            align-content: space-between;
+            /* border: 1px solid blue;   */
+            order: 2;
+        }
+        .third {
+            flex: 1 7 auto;
+            order: 1;
+      }
+
+        .container {
+            border-radius: 5px;
+            height: auto;
+        }
+
+        #game {
+            flex: 1 1 100%;
+            display: flex;
+            flex-flow: row wrap;
+            }
+
+        .card {
+            font-size: calc(1em + 1vw);
+            text-align: center;  
+            flex: 1 1 21%;
+            height: auto;
+            padding: calc(0.5em + 1vw);
+            border: 1px inset grey;
+            }
+        
+        #timer {
+            font-size: calc(1em + 6vw);;
+            font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
+            animation-delay: 0.5s;
+        }
+
+      #welcome {
+        align-self: flex-start;
+        }
+      
+    #username {
+        writing-mode: horizontal-tb;
+        text-orientation: horizontal-tb;
+        align-self: center;
+        }
+    
+    #board, #new-game {
+        display: none;
+    }
+
+    @media (orientation: landscape) {
+        .second, .third {
+            display: none;
+        }
+        #game-frame {
+            height: auto;
+            }
+           
+    }
