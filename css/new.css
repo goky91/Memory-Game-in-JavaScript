@@ -112,7 +112,7 @@ background-color: rgb(44, 92, 63);
     flex: 1 1 21%;
     height: auto;
     padding: 1em;
-    border: 1px inset grey;
+    border: 1px inset blue;
 }/*
 .open:hover {
 border: 1px solid yellow;
