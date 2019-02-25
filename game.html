@@ -43,14 +43,15 @@
     <div class="second column">
         <div id="score-board">       
             <div id="timer" class="container">
-                <span id="countdown">00:45</span>
+                <span>00:</span><span id="seconds">50</span>
             </div>    
             <div id="board" class="container">
                 <h1>Result:</h1>
-                <meter value="22" max="100">Hit Rate: </meter>
-                <meter value="30" max="100">Total Time: </meter>
-                <meter value="60" max="100">Final Score: </meter>
-                <ol id="score"></ol>
+                <div id="progress">
+                    <div  class="bar"><div id="score"></div><p>Points</p></div>
+                    <div  class="bar"><div id="rate"></div><p>Hit Rate</p></div>
+                    <div  class="bar"><div id="time"></div><p>Time</p></div>
+                </div>
             </div>
             <button id="new-game" class="container">New Game</button>        
         </div>
