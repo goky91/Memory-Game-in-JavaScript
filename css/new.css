@@ -26,7 +26,6 @@ body {
     position: relative;
     flex: 1 1 auto;
     height: 100%;
-    /* border: 1px solid green; */
     display: flex;
     justify-content: space-around;
     align-content: space-around;
@@ -40,11 +39,9 @@ body {
         flex-direction: column;
         flex: 2 2 30%;  
         align-content: space-between;
-        /* border: 1px solid blue;   */
     }
     .third {
         flex: 1 6 auto;
-        /* border: 2px solid yellow; */
         flex-flow: column;
         justify-content: flex-start;
         animation-name: intro-fade;
@@ -85,83 +82,57 @@ display: flex;
 flex-flow: row wrap;
 }
 
-.card {
+#game > div {
 display: flex;
 justify-content: center;
 align-content: center;
 font-size: calc(1em + 1vw); 
 flex: 1 1 21%;
 height: auto;
-border: 1px inset grey;
+border: 0.2px inset rgba(244, 66, 87, 0.342);  
 }
-.card > span {
+
+#game > div:hover{
+    border-color: rgb(189, 27, 46);
+}
+#game > div:active{
+    background-color: rgba(160, 160, 160, 0.192);
+}
+
+#game > div > span {
     display: block;
     align-self: center;
+    pointer-events: none;
 }
-/* .card > span{
-    visibility: hidden;
-} */
-/* .card:hover {
-border: 1px solid yellow;
-background-color: rgb(44, 92, 63);
-}*/
 
-.open {
-    font-size: calc(1em + 1vw);
-    text-align: center;  
-    flex: 1 1 21%;
-    height: auto;
-    padding: 1em;
-    border: 1px inset blue;
-}/*
-.open:hover {
-border: 1px solid yellow;
-background-color: rgb(44, 92, 63);
+.disableClick {
+    pointer-events: none !important;
 }
+
 .match {
-border: 1px dashed white;
-text-align: center;
-width: 100px;
-height: 100px;
-background-color: rgb(115, 116, 115);
-background-position: center center;
-background-repeat: no-repeat;
-background-size: contain;
-background-image: none;
-font-size: 4em;
-font-family: Arial, Helvetica, sans-serif; 
-color: rgb(231, 73, 24);
-
-/* This removes the text */
-/* text-indent:0;
-white-space: nowrap;
-overflow: hidden; */
-/*=======================*/      
-
-/* flex: 1 1 25%;
-display: flex;
-flex: column no-wrap;
-justify-content: center;
-align-items: center;
+    background-color: rgb(189, 27, 46);
+    color: wheat;
+    border: none;
 }
-.match:hover {
-border: 1px solid yellow;
-background-color: rgb(115, 116, 115);
-} */ 
 
 #timer {
     flex: 1 1 20%;
     margin-top: 0;
-    font-size: calc(1em + 6vw);;
+    font-size: calc(1em + 6vw);
     font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
     animation-delay: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
+/* #countdown {
+    align-self: center;
+} */
 
 #score-board {
     flex-direction: column;
     text-align: center;
     display: flex;
-    /* border: 1px solid blue; */
     flex: 1 1 auto;
     height: auto;
 }
@@ -171,17 +142,39 @@ background-color: rgb(115, 116, 115);
 
 #board {
     flex: 2 1 50%;
+    height: auto;
     font-size: calc(0.5em + 1vw);
     font-family: 'Anton', 'Open Sans', 'Arial';
     animation-delay: 1s;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: flex-start;
     }
-    meter {
-        flex: 1 1 70%;
-        width: 70%;
-        }
-    meter[value] {
-        background-color: red;
-        }
+
+    #board h1 {
+        flex: 0 0 auto;
+    }
+
+    #progress {
+        flex: 0 0 50%;
+        height: auto;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: flex-end;
+    }
+    .bar {
+        flex: 0 0 30%;
+        height: 100%;
+    }
+    .bar div{
+        width: 30%;
+        background-color: rgb(244, 66, 86);
+        margin: 10px auto;
+    }
+
+
+
 
 #new-game {
     flex: 1 2 10%;
@@ -193,6 +186,11 @@ background-color: rgb(115, 116, 115);
     animation-delay: 1.5s;
     z-index: 2;
    }
+   #new-game:disabled, #new-game:active {
+    background-color: brown;
+    color: rgb(244, 66, 86);
+    outline: none;
+}
 
 #welcome {
     font-family: 'Anton', 'Open Sans', 'Arial';
@@ -212,23 +210,32 @@ background-color: rgb(115, 116, 115);
     line-height: 1;
     }
 
+    @media all and (max-height: 508px){
+        #welcome, #username {
+          margin-left: 3px;
+            font-size: calc(1em + 1vh);
+            line-height: 1;
+        }
+        .third {
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-content: flex-start;
+      }
+    }
+
     @media all and (max-width: 1230px) {
         * {
             animation-duration: 0.7s !important;
             animation-delay: 0s !important;
         }
-
-        #cloak {
-            display: none;
-            animation: none;
-        }
       
         #game-frame {
-          flex-flow: column;
-          height: 100vh;
-          justify-content: center;
-          align-content: space-around;
-        }
+            flex-flow: column;
+            height: calc(100vh - 56px);
+            justify-content: center;
+            align-content: space-around;
+            position: fixed;
+          }
   
         .column {
           flex: 1 1 auto;
@@ -241,9 +248,9 @@ background-color: rgb(115, 116, 115);
         }
         .second {
             flex-direction: column;
-            flex: 2 2 auto;  
-            align-content: space-between;
-            /* border: 1px solid blue;   */
+            flex: 1 1 auto;
+            height: auto;  
+            align-content: flex-start;
             order: 2;
         }
         .third {
@@ -268,13 +275,23 @@ background-color: rgb(115, 116, 115);
             flex: 1 1 21%;
             height: auto;
             padding: calc(0.5em + 1vw);
-            border: 1px inset grey;
             }
         
         #timer {
-            font-size: calc(1em + 6vw);;
+            flex: 1 1 10%;
+            font-size: calc(3em + 6vw);
             font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
             animation-delay: 0.5s;
+        }
+
+        #new-game {
+            flex: 1 2 10%;
+            width: 60%;   
+            align-self: center;
+            height: 50px;
+        }
+        #new-game:disabled {
+            display: none;
         }
 
       #welcome {
@@ -287,16 +304,16 @@ background-color: rgb(115, 116, 115);
         align-self: center;
         }
     
-    #board, #new-game {
+    #board {
         display: none;
     }
+}
 
-    @media (orientation: landscape) {
+    @media only screen and (max-width: 1366px) and (orientation: landscape) {
         .second, .third {
             display: none;
         }
         #game-frame {
             height: auto;
-            }
-           
+            }       
     }
