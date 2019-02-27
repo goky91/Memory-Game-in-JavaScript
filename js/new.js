@@ -9,7 +9,10 @@ var newGameBtn = document.getElementById('new-game');
 var seconds = document.getElementById('seconds');
 var numberOfClicks = 0;
 var points = 0;
+var user = localStorage.getItem('user');
 //==========Main Functions============
+document.getElementById('username').textContent = user;
+
 var timer = function () {     
     var countingTime = function () {          
         var currentTime = parseFloat(seconds.textContent);
@@ -18,6 +21,7 @@ var timer = function () {
         } else {
             window.clearInterval(time);
             allCards.classList.toggle('disableClick');
+            localStorage.clear();
             //==========Smaller Screens==========
             if(window.innerWidth < 1230){
                 allCards.style.display = 'none';
