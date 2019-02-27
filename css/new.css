@@ -14,6 +14,11 @@ body {
     100% { opacity: 1;}
   }
 
+  @keyframes expand {
+      0% {height: 100%;}
+      0% {height: inherit;}
+  }
+
 /*======Layout=======*/
 
 #game-frame {
@@ -37,7 +42,7 @@ body {
     }
     .second {
         flex-direction: column;
-        flex: 2 2 30%;  
+        flex: 2 2 30%; 
         align-content: space-between;
     }
     .third {
@@ -46,21 +51,21 @@ body {
         justify-content: flex-start;
         animation-name: intro-fade;
         animation-duration: 2s;
-        animation-delay: 2s;
+        animation-delay: 1s;
         animation-fill-mode: both;
         }
 
 /*======Elements=======*/
 
 #cloak {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    width: 150vw;
+    height: 150vh;
+    position: fixed;
     background-color:  rgba(12, 12, 12, 0.527);
     z-index: 1;
     animation-name: intro-fade;
     animation-duration: 1s;
-    animation-delay: 3.1s;
+    animation-delay: 2.1s;
     animation-fill-mode: both;
   }
 
@@ -116,18 +121,15 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
 }
 
 #timer {
-    flex: 1 1 20%;
-    margin-top: 0;
+    flex: 1 1 auto;
     font-size: calc(1em + 6vw);
     font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
     animation-delay: 0.5s;
     display: flex;
-    justify-content: center;
+    flex-flow: row nowrap;
     align-content: center;
+    justify-content: center;
   }
-/* #countdown {
-    align-self: center;
-} */
 
 #score-board {
     flex-direction: column;
@@ -145,10 +147,10 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
     height: auto;
     font-size: calc(0.5em + 1vw);
     font-family: 'Anton', 'Open Sans', 'Arial';
-    animation-delay: 1s;
+    animation-delay: 0.7s;
     display: flex;
-    flex-flow: column nowrap;
-    justify-items: flex-start;
+    flex-direction: column;
+    justify-content: space-evenly;
     }
 
     #board h1 {
@@ -160,22 +162,30 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
         height: auto;
         display: flex;
         flex-flow: row nowrap;
-        justify-content: space-around;
-        align-items: flex-end;
+        justify-items: space-around;
+        justify-content: center;
+        justify-self: flex-end;
     }
     .bar {
         flex: 0 0 30%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-content: center;
+        visibility: hidden;
     }
-    .bar div{
+    .bar div {
         width: 30%;
         background-color: rgb(244, 66, 86);
         margin: 10px auto;
+        overflow: hidden;
+        animation-name: expand;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
     }
-
-
-
-
+  
 #new-game {
     flex: 1 2 10%;
     width: 60%;
@@ -183,8 +193,8 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
     font-family: 'Anton', 'Open Sans', 'Arial';
     font-size: calc(0.5em + 1vw);
     border: none;
-    animation-delay: 1.5s;
-    z-index: 2;
+    animation-delay: 1s;
+    z-index: 1;
    }
    #new-game:disabled, #new-game:active {
     background-color: brown;
@@ -224,10 +234,6 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
     }
 
     @media all and (max-width: 1230px) {
-        * {
-            animation-duration: 0.7s !important;
-            animation-delay: 0s !important;
-        }
       
         #game-frame {
             flex-flow: column;
@@ -248,8 +254,7 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
         }
         .second {
             flex-direction: column;
-            flex: 1 1 auto;
-            height: auto;  
+            flex: 1 1 auto; 
             align-content: flex-start;
             order: 2;
         }
@@ -278,8 +283,9 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
             }
         
         #timer {
-            flex: 1 1 10%;
-            font-size: calc(3em + 6vw);
+            flex: 0 0 auto;
+            height: 1.5em;
+            font-size: calc(1em + 6vw);
             font-family: 'Allerta Stencil', 'Open Sans', 'Arial';
             animation-delay: 0.5s;
         }
@@ -306,14 +312,15 @@ border: 0.2px inset rgba(244, 66, 87, 0.342);
     
     #board {
         display: none;
+        height: 60vh;
     }
 }
 
-    @media only screen and (max-width: 1366px) and (orientation: landscape) {
+    /* @media only screen and (max-width: 1366px) and (orientation: landscape) {
         .second, .third {
             display: none;
         }
         #game-frame {
             height: auto;
             }       
-    }
+    } */
