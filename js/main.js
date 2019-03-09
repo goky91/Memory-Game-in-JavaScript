@@ -1,129 +1,127 @@
+'use strict';
+//===========Elements===========
+var allCards = document.querySelector('#game'), item;
+var board = document.getElementById('board');
+var cardsList = document.querySelectorAll('.card');
+var cardA, cardB;
+var spans = document.querySelectorAll('.card span');
+// var numberOfOpen = [];
+var newGameBtn = document.getElementById('new-game');
+var seconds = document.getElementById('seconds');
+var numberOfClicks = 0;
+var totalClicks = 0;
+var points = 0;
+var user = localStorage.getItem('user');
+//==========Main Functions============
+document.getElementById('username').textContent = user;
 
-    //main
-    console.log('JS CONNECTED');
-    let cardClosed = document.querySelectorAll(".card");
-    let cardsValues = [];
-    let cardsSpans = [];
-    let currentScore = [];
-    let newGameButton = document.getElementById('new-game');
-    //shuffle cards at the beginning
-      let list = document.querySelector('#game'), star;
-      let randomizeCards = function(){
-          for (star = list.children.length; star >= 0; star--) {
-              list.appendChild(list.children[Math.random() * star | 0]);
-          }
-      }
-      randomizeCards();
-      // clicking the cards on the board
-      function onCardClick() {                    
-        if (this.classList.contains("card")) {
-          
-            this.classList.add("open");
-            this.classList.remove("card");
+var hideAllCards = function(){ 
+    for(var y=0; y<spans.length; y++){
+        spans[y].style.visibility = 'hidden';
+    }
+}
+hideAllCards();
 
-            cardsValues.push(this.innerHTML);
-            cardsSpans.push(this);
-            console.log(cardsValues);
-
-        } else if (this.classList.contains('match')) {
-                console.log('these are already matched');
-            } else {
-                  this.classList.add("card");
-                  this.classList.remove("open");
-                  cardsValues.pop(this.innerHTML);
-                  cardsSpans.pop(this);
+var timer = function () {     
+    var countingTime = function () {          
+        var currentTime = parseFloat(seconds.textContent);
+        if (currentTime > 0 && points != 12) {
+            seconds.textContent = currentTime - 1;
+        } else {
+            window.clearInterval(time);
+            allCards.classList.toggle('disableClick');
+            localStorage.clear();
+            //==========Smaller Screens==========
+            if(window.innerWidth < 1230){
+                allCards.style.display = 'none';
+                board.style.display = 'flex';
             }
-
-            if (cardsValues.length === 2) {
-              console.log('two cards are selected');
-              if (cardsValues[0] === cardsValues[1]) {
-                console.log(`we have a match ${cardsValues[0]}, ${cardsValues[1]}`);
-                
-                cardsSpans[0].classList.add('match');
-                cardsSpans[0].classList.remove('open');
-                cardsSpans[1].classList.add('match');
-                cardsSpans[1].classList.remove('open');
-
-                cardsValues = [];
-                cardsSpans = [];
-
-              // current score is counting when we have a match
-                currentScore.push(1);
-                console.log(`Current score is ${currentScore.length}`);
-
-              //quick clicking problem 
-                } else if (cardsValues.length > 2) {
-                  console.log('more than two cards are selected, reseting...');
-                    } 
-              //quick clicking problem 
-                    else {
-                      setTimeout(reseting, 500);
-                      function reseting() {
-                        cardsSpans[0].classList.add('card');
-                        cardsSpans[0].classList.remove('open');
-                        cardsSpans[1].classList.add('card');
-                        cardsSpans[1].classList.remove('open');
-                        cardsValues = [];
-                        cardsSpans = [];
-                        console.log('different cards are reseted');
-                        }
-                    } 
-            }
-      }    
-      // Timer 
-      let countdown = document.getElementById('countdown');
-      console.log(countdown);
-      newGameButton.disabled = true;  
-      
-      let timerEngine = function () {     
-            newGameButton.disabled = true;
+            //==========Larger Screens==========
+            //calculate the results bars: --Figure out calculations and the layout
+                var bars = document.querySelectorAll('.bar');
+                var score = document.getElementById('score');
+                var rate = document.getElementById('rate');
+                var finalTime = document.getElementById('time');
             
-        let countingTime = function () {          
-          let currentTime = parseFloat(countdown.textContent);
-          if (currentTime > 0) {
-            countdown.textContent = currentTime - 1;
-          } else {
-            window.clearInterval(timer);
-            // scoreboard activates when the timer hits 0
-            let playerName = document.createElement('LI');
-            // let nameInput = prompt(`You scored ${currentScore.length} points! \n Enter your name:`);
-            let scoreBoard = document.getElementById('score');
-            // let newPlayer = scoreBoard.appendChild(playerName);
-            // newPlayer.textContent = nameInput;
-            newGameButton.disabled = false;
-          }
+                for(var m = 0; m < bars.length; m++){
+                    bars[m].style.visibility = 'visible';
+                    score.style.height = (points * 8.3) + '%';
+                    rate.style.height = points / ((totalClicks / 2) / 100) + '%';
+                    finalTime.style.height = (59 - currentTime) +'%';
+                }
+            
+        }
+    };
+    var time = window.setInterval(countingTime, 1000);
+};  
 
-        };
-        let timer = window.setInterval(countingTime, 1000);
-        
-      };  
-      timerEngine();
-
-      // New Game Button that shufles cards and resets the timer.  
-      newGameButton.onclick = function () {
+var shuffleCards = function(){
+    //shuffle
+    for (item = allCards.children.length; item >= 0; item--) {
+        allCards.appendChild(allCards.children[Math.random() * item | 0]); //this card | 0 uses bitwise operator to escape decimal numbers.
+    }
+    //hide cloak
+    if(document.getElementById('cloak').style.display != 'none'){
         document.getElementById('cloak').style.display = 'none';
-        countdown.textContent = 50;
+    }
+    //disable new game button
+    newGameBtn.disabled = true;
+}
 
-        let allCards = document.querySelectorAll('.card, .open, .match');
-                  
-        for(let k=0; k<allCards.length; k++) {
-            allCards[k].classList.remove('card');
-            allCards[k].classList.remove('open');
-            allCards[k].classList.remove('match');
-            allCards[k].classList.add('card');
+var onCardClick = function(clickedCard){
+    var activeCard = clickedCard.target;
+
+    var card = {
+        tile: activeCard,
+        span: activeCard.firstChild,
+        value: activeCard.textContent,
+        reveal: function(){
+            this.span.style.visibility = 'visible';
+            this.tile.classList.add('disableClick');
+        },
+        match: function(){
+            this.tile.classList.add('match');
+        },
+        hide: function(){
+            this.tile.classList.remove('match', 'disableClick');
+            this.span.style.visibility = 'hidden';
+        }
+    }
+
+    numberOfClicks++;
+    totalClicks++;
+     
+    if(numberOfClicks === 1){
+    cardA = Object.create(card);
+    cardA.reveal();
+    }
+
+    function createB(){
+        if(numberOfClicks === 2){
+        cardB = Object.create(card);
+        console.log('Closure works, if this cardA isn\'t undefiend= ' + cardA);
+        cardB.reveal();
+
+            if(cardA.value === cardB.value){
+                cardA.match();
+                cardB.match();
+                points++;
+            } else {
+                allCards.classList.add('disableClick'); 
+                setTimeout(function(){
+                    cardA.hide();
+                    cardB.hide();
+                    allCards.classList.remove('disableClick'); 
+                }, 400); 
+            }
+            numberOfClicks = 0;
         }
         
-        console.log('New game. Reseting cards and timer...');
-        timerEngine(); 
-        randomizeCards();
-      }
+    } createB();
+    
+}
 
+//==========Event Listeners==========
+newGameBtn.addEventListener('click', function(){shuffleCards(); timer();});
+for(var i = 0; i < cardsList.length; i++) {cardsList[i].addEventListener('click', onCardClick, false);}
 
-      // Activate onCardClick function
-      for (var i = 0; i < cardClosed.length; i++) {
-          cardClosed[i].addEventListener('click', onCardClick, false);
-      }
-
-
-     
-      
