@@ -55,18 +55,17 @@
       flex-flow: row nowrap;
       align-items: center;
     }
-    #intro-circle {
-        flex: 1 1 50%;
-        max-width: 500px;
-        height: 50%;
-        border-radius: 50%;
-        flex-direction: column;
-        text-align: center;
-        color: rgb(244, 66, 86); 
+    #intro-container {
+      background-color: transparent;
+      flex: 0 0 100%;
+      flex-direction: column!important;
+      text-align: center;
+      color: rgb(255, 255, 255); 
     }
   
-    #intro-circle > h1 {
-      margin-bottom: 25px;
+    #intro-container > h1 {
+      flex: 0 0 100%;
+      font-size: 1,6rem;
  }
     #input-form {
         width: 80%;
@@ -84,7 +83,8 @@
 
     #input-form > input {
         width: 80%;
-        height: 20%;
+        height: 60px;
+        border: none;
         border-radius: 10px;
         padding: 5px;
         align-self: center;
@@ -101,19 +101,17 @@
         padding: 5px;
         align-self: center;
         text-align: center;
-        background-color: rgb(52, 81, 247);
+        background-color: rgb(41, 44, 59);
         color: aliceblue;
         border: none;
+        font-weight: 800;
     }
   
     #input-form > button:active {
-        background-color: rgb(19, 53, 247);
+        background-color: rgb(228, 232, 253);
+        color: rgb(41, 44, 59);
         height: 29px;
         margin-top: 1px;
-    }
-
-    .animation {
-        flex: 1 1 25%;
     }
 
     
@@ -153,6 +151,7 @@
       display: flex;
       flex-flow: row wrap;
     }
+
     .card {
       border: 1px dashed white;
       text-align: center;
@@ -316,6 +315,9 @@
     }
   
     @media all and (max-width: 500px) {
+      #input-form, #input-form input {
+        width: 100%;
+      }
       #container {
         width: 100%;
         height: auto;

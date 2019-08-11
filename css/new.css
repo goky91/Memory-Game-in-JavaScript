@@ -80,6 +80,18 @@ body {
     animation-fill-mode: both;
 }
 
+.close-game {
+    width: 40px;
+    font-size: 2rem;
+    padding: 10px 20px;
+    background-color: rgba(240, 248, 255, 0.548);
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgb(244, 66, 86);
+    position: relative;
+    float: right;
+  }
+
 #game {
 flex: 0 0 100%;
 height: auto;      
