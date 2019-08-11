@@ -2,7 +2,7 @@
 //===========Elements===========
 var allCards = document.querySelector('#game'), item;
 var board = document.getElementById('board');
-var cardsList = document.querySelectorAll('.card');
+var CardsList = document.querySelectorAll('.card');
 var cardA, cardB;
 var spans = document.querySelectorAll('.card span');
 // var numberOfOpen = [];
@@ -58,7 +58,7 @@ var timer = function () {
 var shuffleCards = function(){
     //shuffle
     for (item = allCards.children.length; item >= 0; item--) {
-        allCards.appendChild(allCards.children[Math.random() * item | 0]); //this card | 0 uses bitwise operator to escape decimal numbers.
+        allCards.appendChild(allCards.children[Math.random() * item | 0]); //this Card | 0 uses bitwise operator to escape decimal numbers.
     }
     //hide cloak
     if(document.getElementById('cloak').style.display != 'none'){
@@ -74,32 +74,33 @@ var onCardClick = function(clickedCard){
     var card = {
         tile: activeCard,
         span: activeCard.firstChild,
-        value: activeCard.textContent,
-        reveal: function(){
-            this.span.style.visibility = 'visible';
-            this.tile.classList.add('disableClick');
-        },
-        match: function(){
-            this.tile.classList.add('match');
-        },
-        hide: function(){
-            this.tile.classList.remove('match', 'disableClick');
-            this.span.style.visibility = 'hidden';
-        }
+        value: activeCard.textContent
     }
+    //let's try to use less memory space with prototype methods :)
+    card.reveal = function(){
+        this.span.style.visibility = 'visible';
+        this.tile.classList.add('disableClick');
+    };
+    card.match = function(){
+        this.tile.classList.add('match');
+    };
+    card.hide = function(){
+        this.tile.classList.remove('match', 'disableClick');
+        this.span.style.visibility = 'hidden';    
+    };
+    //end of prototypes for Card
 
     numberOfClicks++;
     totalClicks++;
      
     if(numberOfClicks === 1){
-    cardA = Object.create(card);
-    cardA.reveal();
+        cardA = Object.create(card);
+        cardA.reveal();
     }
 
-    function createB(){
+    (function createB(){
         if(numberOfClicks === 2){
         cardB = Object.create(card);
-        console.log('Closure works, if this cardA isn\'t undefiend= ' + cardA);
         cardB.reveal();
 
             if(cardA.value === cardB.value){
@@ -117,11 +118,11 @@ var onCardClick = function(clickedCard){
             numberOfClicks = 0;
         }
         
-    } createB();
+    }());
     
 }
 
 //==========Event Listeners==========
 newGameBtn.addEventListener('click', function(){shuffleCards(); timer();});
-for(var i = 0; i < cardsList.length; i++) {cardsList[i].addEventListener('click', onCardClick, false);}
+for(var i = 0; i < CardsList.length; i++) {CardsList[i].addEventListener('click', onCardClick, false);}
 
