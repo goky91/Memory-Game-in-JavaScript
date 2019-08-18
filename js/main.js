@@ -76,7 +76,7 @@ var onCardClick = function(clickedCard){
         span: activeCard.firstChild,
         value: activeCard.textContent
     }
-    //let's try to use less memory space with prototype methods :)
+    //let's try to use less memory space by making prototype methods to be inherited later by a clicked card :)
     card.reveal = function(){
         this.span.style.visibility = 'visible';
         this.tile.classList.add('disableClick');
@@ -88,10 +88,12 @@ var onCardClick = function(clickedCard){
         this.tile.classList.remove('match', 'disableClick');
         this.span.style.visibility = 'hidden';    
     };
-    //end of prototypes for Card
+    //end of prototype methods
 
     numberOfClicks++;
     totalClicks++;
+
+    //on each two clicks create two card objects and compare them
      
     if(numberOfClicks === 1){
         cardA = Object.create(card);
